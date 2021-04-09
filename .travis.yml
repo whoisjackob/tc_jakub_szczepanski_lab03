@@ -1,3 +1,17 @@
 language: node_js
-node_js:
-  - 7
+
+services:
+  - docker
+
+install:
+  - docker build -t tc_jakub_szczepanski_lab03 .
+  - docker run --name tc_jakub_szczepanski_lab03 -p 3000:3000 tc_jakub_szczepanski_lab03
+
+node_js: 
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+
+script:
+    - yarn test
